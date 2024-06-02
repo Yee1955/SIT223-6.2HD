@@ -47,6 +47,7 @@ app.get('*', function(req, res){
     res.send('This is an invalid URL.');
 });
 
+const PORT = process.env.PORT
 app.listen(PORT, () => {
     console.log(`Server is running on port ${PORT}`);
 });
