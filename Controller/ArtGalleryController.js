@@ -3,7 +3,7 @@ const router = express.Router();
 
 const { checkRole } = require('../Authentication/Authenticate');
 var initModels = require("../models/init-models");
-const sequelize = require('../sequelize');
+const sequelize = require('../Persistence/sequelize');
 
 var models = initModels(sequelize);
 
