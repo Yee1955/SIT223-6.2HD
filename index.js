@@ -47,8 +47,6 @@ app.get('*', function(req, res){
     res.send('This is an invalid URL.');
 });
 
-app.listen(3000, function() {
-    console.log('Listening on http://localhost:3000');
+app.listen(PORT, () => {
+    console.log(`Server is running on port ${PORT}`);
 });
-
-// Some comment
