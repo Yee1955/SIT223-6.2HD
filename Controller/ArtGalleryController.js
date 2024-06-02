@@ -3,11 +3,8 @@ const router = express.Router();
 
 const { checkRole } = require('../Authentication/Authenticate');
 var initModels = require("../models/init-models");
-const Sequelize = require('sequelize');
-const sequelize = new Sequelize('art_gallery', 'postgres', '', {
-    host: 'localhost',
-    dialect: 'postgres'
-});
+const sequelize = require('../sequelize');
+
 var models = initModels(sequelize);
 
 router.get('', checkRole("Guest"), async (req, res) => {
