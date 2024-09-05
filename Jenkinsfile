@@ -20,8 +20,15 @@ pipeline {
         }
 
         stage('Build') {
+            agent {
+                docker {
+                    image 'node:20.17.0-alpine3.20'
+                    reuseNode true
+                }
+            }
             steps {
                 echo 'Building Docker image'
+                sh 'node --version'
                 sh 'docker build -t yourappname:latest .'
             }
         }
