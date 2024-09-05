@@ -1,4 +1,6 @@
 pipeline {
+    agent any
+
     tools {
         nodejs "NodeJS"
     }
@@ -12,7 +14,6 @@ pipeline {
 
         stage('Prepare') {
             steps {
-                sh 'node --version'
                 echo 'Installing dependencies'
                 sh 'npm install'
             }
