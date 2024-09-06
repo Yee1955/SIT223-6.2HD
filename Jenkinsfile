@@ -12,17 +12,6 @@ pipeline {
 
     stages {
 
-        stage('Initialize') {
-            steps {
-                script {
-                    // Define and configure tools and environment variables within a script block
-                    def dockerHome = tool 'myDocker'
-                    env.PATH = "${dockerHome}/bin:${env.PATH}"
-                    echo "Environment initialized with Docker at ${dockerHome}"
-                }
-            }
-        }
-
         stage('Clone repository') {
             steps {
                 checkout scm
