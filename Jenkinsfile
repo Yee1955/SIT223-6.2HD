@@ -21,7 +21,7 @@ pipeline {
         stage('Build image') {
             steps {
                script {
-                dockerImage = docker.build("my-docker-62HD")
+                dockerImage = docker.build("my-docker-62hd")
                }
             }
         }
