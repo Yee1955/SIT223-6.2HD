@@ -21,8 +21,7 @@ pipeline {
         stage('Build image') {
             steps {
                 script {
-                    // Building the Docker image
-                    docker.build("my-image")
+                    docker build -t my-express-app .
                 }
             }
         }
