@@ -22,7 +22,7 @@ pipeline {
             steps {
                 script {
                     // Building the Docker image
-                    def app = docker.build("getintodevops/hellonode")
+                    docker.build("my-image")
                 }
             }
         }
