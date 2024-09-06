@@ -8,6 +8,7 @@ pipeline {
     environment {
         // Define environment variables
         DEPLOYMENT_PATH = '/path/to/deployment'
+        HOME = "${env.WORKSPACE}"
     }
 
     stages {
@@ -19,8 +20,13 @@ pipeline {
         }
 
         stage('Build image') {
+            agent {
+                docker { image 'docker:24.0.5' }
+            }
             steps {
-                sh 'docker build -t my-express-app .'
+               script {
+                dockerImage = docker.build("my-docker-62HD")
+               }
             }
         }
 
