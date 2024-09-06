@@ -20,18 +20,16 @@ pipeline {
 
         stage('Build image') {
             steps {
-               script {
-                dockerImage = docker.build("my-docker-62hd")
-               }
+                script {
+                    dockerImage = docker.build("my-docker-62hd")
+                }
             }
         }
 
         stage('Test image') {
             steps {
                 script {
-                    // Testing using the built Docker image
-                    def app = docker.image("getintodevops/hellonode")
-                    app.inside {
+                    dockerImage.inside {
                         sh 'echo "Tests passed"'
                     }
                 }
