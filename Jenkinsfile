@@ -10,10 +10,7 @@ pipeline {
         DEPLOYMENT_PATH = '/path/to/deployment'
     }
 
-    def app
-
     stages {
-
         stage('Clone repository') {
             steps {
                 checkout scm
@@ -21,12 +18,20 @@ pipeline {
         }
 
         stage('Build image') {
-            app = docker.build("getintodevops/hellonode")
+            steps {
+                script {
+                    app = docker.build("getintodevops/hellonode")
+                }
+            }
         }
 
         stage('Test image') {
-            app.inside {
-                sh 'echo "Tests passed"'
+            steps {
+                script {
+                    app.inside {
+                        sh 'echo "Tests passed"'
+                    }
+                }
             }
         }
     }
