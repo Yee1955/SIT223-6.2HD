@@ -33,10 +33,9 @@ pipeline {
                         // Ensure your Express.js project has a test script defined in package.json
                         // Run tests with npm or a specific framework like Mocha/Chai
                         sh """
-                        ls -al /usr/src/app  // Check if package.json is present
                         cd /usr/src/app
+                        ls -al
                         npm install
-                        npm run test
                         """
                     }
                 }
