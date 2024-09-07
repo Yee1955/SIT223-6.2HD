@@ -13,6 +13,7 @@ pipeline {
     stages {
         stage('Clone repository') {
             steps {
+                sh 'echo "Docker host IP is $(getent hosts host.docker.internal | awk \'{ print $1 }\')"'
                 checkout scm
             }
         }
