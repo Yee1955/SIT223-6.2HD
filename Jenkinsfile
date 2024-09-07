@@ -100,7 +100,12 @@ pipeline {
             echo 'Pipeline completed successfully.'
             emailext(
                 subject: "Build Successful: ${env.JOB_NAME} #${env.BUILD_NUMBER}",
-                body: """<p>GOOD NEWS!</p><p>The build was successful.</p><p>Check it out here: <a href='${BUILD_URL}'>${BUILD_URL}</a></p>""",
+                body: """<html><body>
+                        <p>GOOD NEWS!</p>
+                        <p>The build was successful.</p>
+                        <p>Check it out here: <a href='${BUILD_URL}'>${BUILD_URL}</a></p>
+                        </body></html>""",
+                mimeType: 'text/html',
                 to: "${env.RECIPIENT}",
                 attachLog: true
             )
@@ -109,8 +114,12 @@ pipeline {
             echo 'Pipeline failed.'
             emailext(
                 subject: "Build Failed: ${env.JOB_NAME} #${env.BUILD_NUMBER}",
-                body: """<p>ALERT!</p><p>The build has failed.</p><p>Check it out here: <a href='${BUILD_URL}'>${BUILD_URL}</a></p>""",
-                to: "${env.RECIPIENT}",
+                body: """<html><body>
+                        <p>ALERT!</p>
+                        <p>The build has failed.</p>
+                        <p>Check it out here: <a href='${BUILD_URL}'>${BUILD_URL}</a></p>
+                        </body></html>""",
+                mimeType: 'text/html',
                 attachLog: true
             )
         }
