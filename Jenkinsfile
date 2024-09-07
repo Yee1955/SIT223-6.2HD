@@ -42,10 +42,10 @@ pipeline {
         stage('Pre-Check') {
             steps {
                 script {
+                    sh '/usr/local/bin/docker-compose --version'
                     sh 'echo $PATH'
                     sh 'which docker-compose || echo "docker-compose not found"'
                     sh 'docker-compose --version || echo "Unable to get docker-compose version"'
-                    sh 'cat /usr/local/bin/docker-compose | head -n 5'
                 }
             }
         }
