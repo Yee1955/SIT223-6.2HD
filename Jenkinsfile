@@ -35,6 +35,7 @@ pipeline {
                         sh """
                         cd /usr/src/app
                         npm ci
+                        npm test
                         """
                     }
                 }
