@@ -33,9 +33,9 @@ pipeline {
                         // Ensure your Express.js project has a test script defined in package.json
                         // Run tests with npm or a specific framework like Mocha/Chai
                         sh """
-                        cd /usr/src/app
-                        npm install --only=development
-                        npm run test
+                        cd /usr/src/app  // Ensure you are in the directory with package.json
+                        npm install      // Install all dependencies
+                        npm run test     // Run the test script
                         """
                     }
                 }
