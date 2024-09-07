@@ -57,10 +57,6 @@ pipeline {
                     sh 'docker-compose up -d'
                     // List all running containers to see their status
                     sh 'docker ps'
-                    // Optionally, you can list detailed information about a specific container if you know its name or ID
-                    sh 'docker inspect myexpressapp' // Replace 'myexpressapp' with the actual container name or ID
-                    // Retrieve the IP address if running in a network
-                    sh "docker inspect -f '{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' myexpressapp"
                 }
             }
         }
