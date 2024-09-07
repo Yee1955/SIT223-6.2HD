@@ -17,7 +17,7 @@ pipeline {
             }
         }
 
-        stage('Build image') {
+        stage('Build') {
             steps {
                 script {
                     app = docker.build("myexpressapp:latest")
@@ -25,7 +25,7 @@ pipeline {
             }
         }
 
-        stage('Test image') {
+        stage('Test') {
             steps {
                 script {
                     app.inside {
@@ -41,11 +41,22 @@ pipeline {
 
         stage('Code Quality Analysis') {
             environment {
-                scannerHome = tool 'SonarQube Scanner';
+                scannerHome = tool '123-123';
             }
             steps {
                 withSonarQubeEnv(credentialsId: '1ac30cec-ed2d-4009-a5d5-1faf954d477c', installationName: 'SonarQube') {
                 sh "${scannerHome}/bin/sonar-scanner"
+                }
+            }
+        }
+
+        stage('Deploy') {
+            steps {
+                script {
+                    sh """
+                    cd /usr/src/app
+                    docker-compose up -d
+                    """
                 }
             }
         }
