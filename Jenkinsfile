@@ -8,6 +8,7 @@ pipeline {
     environment {
         // Define environment variables
         DEPLOYMENT_PATH = '/path/to/deployment'
+        SONAR_HOST_URL = 'http://host.docker.internal:9000'
     }
 
     stages {
