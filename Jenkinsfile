@@ -17,6 +17,14 @@ pipeline {
             }
         }
 
+        stage('Verify docker-compose') {
+            steps {
+                script {
+                    sh 'sudo /usr/local/bin/docker-compose --version'  // Use sudo to run docker-compose
+                }
+            }
+        }
+
         stage('Build') {
             steps {
                 script {
@@ -35,17 +43,6 @@ pipeline {
                         npm test
                         """
                     }
-                }
-            }
-        }
-
-        stage('Pre-Check') {
-            steps {
-                script {
-                    sh '/usr/local/bin/docker-compose --version'
-                    sh 'echo $PATH'
-                    sh 'which docker-compose || echo "docker-compose not found"'
-                    sh 'docker-compose --version || echo "Unable to get docker-compose version"'
                 }
             }
         }
