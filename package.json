@@ -3,7 +3,7 @@
    "version": "1.0.0",
    "main": "index.js",
    "scripts": {
-      "test": "mocha --exit ./test/*.test.js",
+      "test": "mocha --exit ./Test/*.test.js",
       "start": "node index.js",
       "typeorm": "typeorm-ts-node-commonjs"
    },
