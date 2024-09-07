@@ -72,7 +72,7 @@ pipeline {
             }
         }
 
-        stage('Monitoring with Datadog') {
+        stage('Monitoring') {
             steps {
                 script {
                     echo "Sending app.build.success metric to Datadog"
