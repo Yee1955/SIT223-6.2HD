@@ -54,7 +54,6 @@ pipeline {
             steps {
                 script {
                     sh """
-                    cd /usr/src/app
                     docker-compose up -d
                     """
                 }
