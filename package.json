@@ -3,9 +3,9 @@
    "version": "1.0.0",
    "main": "index.js",
    "scripts": {
-     "test": "mocha --exit",
-     "start": "node index.js",
-     "typeorm": "typeorm-ts-node-commonjs"
+      "test": "mocha --exit ./test/*.test.js",
+      "start": "node index.js",
+      "typeorm": "typeorm-ts-node-commonjs"
    },
    "author": "Yee Tan",
    "license": "ISC",
@@ -28,13 +28,13 @@
       "sequelize": "^6.37.3"
    },
    "devDependencies": {
-      "@types/mocha": "^9.0.0",
       "@types/chai": "^4.2.22",
-      "chai": "^4.3.6",
-      "mocha": "^10.0.0",
-      "supertest": "^6.2.3",
+      "@types/mocha": "^9.0.0",
       "@types/node": "^16.11.10",
+      "chai": "^4.5.0",
+      "mocha": "^10.7.3",
       "sequelize-auto": "^0.8.8",
+      "supertest": "^6.3.4",
       "ts-node": "10.9.1",
       "typescript": "4.5.2"
    }
