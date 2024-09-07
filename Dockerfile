@@ -7,6 +7,10 @@ WORKDIR /usr/src/app
 # Copy package.json and package-lock.json (or npm-shrinkwrap.json) to leverage Docker cache
 COPY package*.json ./
 
+RUN chown -R node:node /usr/src/app
+
+USER node
+
 # Install dependencies
 RUN npm install
 
