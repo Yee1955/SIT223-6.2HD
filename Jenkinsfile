@@ -6,7 +6,7 @@ pipeline {
     }
 
     environment {
-        DATADOG_API_KEY = credentials('1d79875d7c369ad8b5cbc37911dfd0a6')
+        DATADOG_API_KEY = credentials('datadog-api-key')
     }
 
     stages {
