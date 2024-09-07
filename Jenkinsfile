@@ -13,7 +13,6 @@ pipeline {
     stages {
         stage('Clone repository') {
             steps {
-                sh 'echo "Docker host IP is $(getent hosts host.docker.internal | awk \'{ print $1 }\')"'
                 checkout scm
             }
         }
@@ -58,6 +57,8 @@ pipeline {
                     sh 'docker-compose up -d'
                     // List all running containers to see their status
                     sh 'docker ps'
+                    // Print IPv4 address
+                    sh "echo 'Docker host IPv4 is \$(getent ahosts host.docker.internal | grep STREAM | awk '{ print \$1 }')'"
                 }
             }
         }
