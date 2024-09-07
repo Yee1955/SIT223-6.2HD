@@ -42,7 +42,7 @@ pipeline {
 
         stage('Code Quality Analysis') {
             environment {
-                scannerHome = tool '123-123';
+                scannerHome = tool 'SonarQube Scanner';
             }
             steps {
                 withSonarQubeEnv(credentialsId: '1ac30cec-ed2d-4009-a5d5-1faf954d477c', installationName: 'SonarQube') {
