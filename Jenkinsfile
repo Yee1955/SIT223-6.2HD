@@ -101,7 +101,7 @@ pipeline {
             emailext(
                 subject: "Build Successful: ${env.JOB_NAME} #${env.BUILD_NUMBER}",
                 body: """<p>GOOD NEWS!</p><p>The build was successful.</p><p>Check it out here: <a href='${BUILD_URL}'>${BUILD_URL}</a></p>""",
-                to: "${env.RECIPIENT}"
+                to: "${env.RECIPIENT}",
                 attachLog: true
             )
         }
@@ -110,7 +110,7 @@ pipeline {
             emailext(
                 subject: "Build Failed: ${env.JOB_NAME} #${env.BUILD_NUMBER}",
                 body: """<p>ALERT!</p><p>The build has failed.</p><p>Check it out here: <a href='${BUILD_URL}'>${BUILD_URL}</a></p>""",
-                to: "${env.RECIPIENT}"
+                to: "${env.RECIPIENT}",
                 attachLog: true
             )
         }
