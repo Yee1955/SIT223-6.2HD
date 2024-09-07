@@ -17,14 +17,6 @@ pipeline {
             }
         }
 
-        stage('Verify docker-compose') {
-            steps {
-                script {
-                    sh 'sudo /usr/local/bin/docker-compose --version'  // Use sudo to run docker-compose
-                }
-            }
-        }
-
         stage('Build') {
             steps {
                 script {
@@ -61,9 +53,14 @@ pipeline {
         stage('Deploy') {
             steps {
                 script {
-                    sh """
-                    docker-compose up -d
-                    """
+                    // Start the containers in detached mode
+                    sh 'docker-compose up -d'
+                    // List all running containers to see their status
+                    sh 'docker ps'
+                    // Optionally, you can list detailed information about a specific container if you know its name or ID
+                    sh 'docker inspect myexpressapp' // Replace 'myexpressapp' with the actual container name or ID
+                    // Retrieve the IP address if running in a network
+                    sh 'docker inspect -f "{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}" myexpressapp'
                 }
             }
         }
