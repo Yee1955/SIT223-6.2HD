@@ -34,8 +34,7 @@ pipeline {
                         // Run tests with npm or a specific framework like Mocha/Chai
                         sh """
                         cd /usr/src/app
-                        ls -al
-                        npm install
+                        npm ci
                         """
                     }
                 }
