@@ -28,16 +28,24 @@ pipeline {
         stage('Test image') {
             steps {
                 script {
-                    // Running the Docker image to perform tests
                     app.inside {
-                        // Ensure your Express.js project has a test script defined in package.json
-                        // Run tests with npm or a specific framework like Mocha/Chai
                         sh """
                         cd /usr/src/app
                         npm ci
                         npm test
                         """
                     }
+                }
+            }
+        }
+
+        stage('Code Quality Analysis') {
+            environment {
+                scannerHome = tool '123-123';
+            }
+            steps {
+                withSonarQubeEnv(credentialsId: '1ac30cec-ed2d-4009-a5d5-1faf954d477c', installationName: 'SonarQube') {
+                sh "${scannerHome}/bin/sonar-scanner"
                 }
             }
         }
