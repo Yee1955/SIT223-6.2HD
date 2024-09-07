@@ -8,7 +8,6 @@ pipeline {
     environment {
         // Define environment variables
         DEPLOYMENT_PATH = '/path/to/deployment'
-        SONAR_HOST_URL = 'http://host.docker.internal:9000'
     }
 
     stages {
@@ -46,7 +45,7 @@ pipeline {
             }
             steps {
                 withSonarQubeEnv(credentialsId: '1ac30cec-ed2d-4009-a5d5-1faf954d477c', installationName: 'SonarQube') {
-                sh "${scannerHome}/bin/sonar-scanner -X"
+                sh "${scannerHome}/bin/sonar-scanner"
                 }
             }
         }
