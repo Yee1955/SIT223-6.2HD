@@ -58,7 +58,7 @@ pipeline {
                     // List all running containers to see their status
                     sh 'docker ps'
                     // Print IPv4 address
-                    sh "echo 'Docker host IPv4 is \$(getent ahosts host.docker.internal | grep STREAM | awk '{ print \$1 }')'"
+                    sh "echo \"Docker host IPv4 is \$(getent ahosts host.docker.internal | grep STREAM | awk '{print \$1}')\""
                 }
             }
         }
