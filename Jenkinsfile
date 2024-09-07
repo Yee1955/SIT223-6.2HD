@@ -74,9 +74,9 @@ pipeline {
         stage('Monitoring with Datadog') {
             steps {
                 script {
-                    // Example: Sending a custom metric to Datadog from Jenkins
+                    echo "Sending app.build.success metric to Datadog"
                     sh '''
-                    curl -X POST -H "Content-Type: application/json" \
+                    response=$(curl -X POST -H "Content-Type: application/json" \
                     -d '{
                             "series" : [{
                                 "metric": "app.build.success",
@@ -86,7 +86,8 @@ pipeline {
                                 "tags": ["env:production"]
                             }]
                         }' \
-                    "https://api.datadoghq.com/api/v1/series?api_key=${DATADOG_API_KEY}"
+                    "https://api.datadoghq.com/api/v1/series?api_key=${DATADOG_API_KEY}")
+                    echo "Datadog response: $response"
                     '''
                 }
             }
