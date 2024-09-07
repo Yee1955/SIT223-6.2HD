@@ -39,6 +39,16 @@ pipeline {
             }
         }
 
+        stage('Pre-Check') {
+            steps {
+                script {
+                    // Check docker-compose version
+                    sh 'which docker-compose || echo "docker-compose not found"'
+                    sh 'docker-compose --version || echo "Unable to get docker-compose version"'
+                }
+            }
+        }
+
         stage('Code Quality Analysis') {
             environment {
                 scannerHome = tool 'SonarQube Scanner';
@@ -54,6 +64,7 @@ pipeline {
             steps {
                 script {
                     sh """
+                    cd /usr/src/app
                     docker-compose up -d
                     """
                 }
