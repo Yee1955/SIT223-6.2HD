@@ -7,6 +7,7 @@ pipeline {
 
     environment {
         DATADOG_API_KEY = credentials('datadog-api-key')
+        RECIPIENT = 'alice0312chong@gmail.com'
     }
 
     stages {
@@ -97,9 +98,21 @@ pipeline {
     post {
         success {
             echo 'Pipeline completed successfully.'
+            emailext(
+                subject: "Build Successful: ${env.JOB_NAME} #${env.BUILD_NUMBER}",
+                body: """<p>GOOD NEWS!</p><p>The build was successful.</p><p>Check it out here: <a href='${BUILD_URL}'>${BUILD_URL}</a></p>""",
+                to: "${env.RECIPIENT}"
+                attachLog: true
+            )
         }
         failure {
             echo 'Pipeline failed.'
+            emailext(
+                subject: "Build Failed: ${env.JOB_NAME} #${env.BUILD_NUMBER}",
+                body: """<p>ALERT!</p><p>The build has failed.</p><p>Check it out here: <a href='${BUILD_URL}'>${BUILD_URL}</a></p>""",
+                to: "${env.RECIPIENT}"
+                attachLog: true
+            )
         }
     }
 }
